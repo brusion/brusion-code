@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="user" class="com.demo.aop.user.UserService"/>
+    <bean id="aop" class="com.demo.aop.user.UserAop"/>
+
+    <!--配置切面类-->
+    <aop:config>
+        <aop:pointcut id="point" expression="execution(* com.demo.aop.*.*(..))"/>
+        <aop:aspect ref="aop">
+            <aop:before method="beforeSay" pointcut-ref="point"/>
+            <aop:after method="afterSay" pointcut-ref="point"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
