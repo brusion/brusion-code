@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--根据参数索引注入-->
+    <bean id="byId" class="com.demo.di.Bean">
+        <constructor-arg index="0" value="set data by id from xml"/>
+        <constructor-arg index="1" value="1"/>
+    </bean>
+
+    <!--根据参数类型注入-->
+    <bean id="byType" class="com.demo.di.Bean">
+        <constructor-arg type="java.lang.String" value="set data by type from xml"/>
+        <constructor-arg type="int" value="2"/>
+    </bean>
+
+    <!--根据参数名称注入-->
+    <bean id="byName" class="com.demo.di.Bean">
+        <constructor-arg name="message" value="set data by name from xml"/>
+        <constructor-arg name="index" value="3"/>
+    </bean>
+
+    <!--使用工厂类方式注入数据-->
+    <bean id="byFactory" class="com.demo.di.BeanFactory" factory-method="getBean">
+        <constructor-arg type="java.lang.String" value="set data by factory from xml"/>
+        <constructor-arg type="int" value="4"/>
+    </bean>
+
+    <!--使用setter方法注入-->
+    <bean id="bySetter" class="com.demo.di.BeanSetter">
+        <property name="message" value="set data by setter method from xml"/>
+        <property name="index" value="5"/>
+    </bean>
+</beans>

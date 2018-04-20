@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--注入常量-->
+    <bean id="intBean" class="com.demo.di.constant.IntBean">
+        <property name="message" value="test data"/>
+        <property name="index">
+            <value>1</value>
+        </property>
+    </bean>
+
+    <!--注入布尔值：yes，true，on，1 结果都是true-->
+    <bean id="booleanBean" class="com.demo.di.constant.BooleanBean">
+        <property name="showData" value="yes"/>
+    </bean>
+
+    <!--注入id值-->
+    <bean id="test" class="java.lang.String">
+        <constructor-arg value="test data 1" index="0"/>
+    </bean>
+
+    <bean id="idBean" class="com.demo.di.idBean.IdBean">
+        <property name="id" ref="test"/>
+    </bean>
+
+    <!--注入list集合数据-->
+    <bean id="listBean" class="com.demo.di.listBean.ListBean">
+        <property name="list">
+            <list>
+                <value>list data 1</value>
+                <value>list data 2</value>
+                <value>list data 3</value>
+                <value>list data 4</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--注入Set集合数据-->
+    <bean id="setBean" class="com.demo.di.listBean.SetBean">
+        <property name="setData">
+            <set>
+                <value>set data 1</value>
+                <value>set data 2</value>
+                <value>set data 3</value>
+            </set>
+        </property>
+    </bean>
+
+    <!--注入数组数据-->
+    <bean id="arrayBean" class="com.demo.di.listBean.ArrayBean">
+        <property name="array">
+            <array>
+                <value>arr data 1</value>
+                <value>arr data 2</value>
+                <value>arr data 3</value>
+            </array>
+        </property>
+
+        <property name="arrayData">
+            <array>
+                <array>
+                    <value>array data1 data1</value>
+                    <value>array data1 data2</value>
+                    <value>array data1 data3</value>
+                </array>
+                <array>
+                    <value>array data2 data1</value>
+                    <value>array data2 data2</value>
+                    <value>array data2 data3</value>
+                </array>
+                <array>
+                    <value>array data3 data1</value>
+                    <value>array data3 data2</value>
+                    <value>array data3 data3</value>
+                </array>
+            </array>
+        </property>
+    </bean>
+
+    <!--注入map数据-->
+    <bean id="mapBean" class="com.demo.di.listBean.MapBean">
+        <property name="mapData">
+            <map key-type="java.lang.String" value-type="java.lang.String">
+                <entry value="value data 1" key="key data 1"/>
+                <entry value="value data 2" key="key data 2"/>
+                <entry value="value data 3" key="key data 3"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--注入Properties数据-->
+    <bean id="proBean" class="com.demo.di.properties.PropertiesBean">
+        <property name="properties">
+            <value>
+                id=1
+                name=test
+                address = test address
+                age = 11
+            </value>
+        </property>
+    </bean>
+
+
+    <bean id="naC" class="com.demo.di.navigation.NavigationC"/>
+    <bean id="naB" class="com.demo.di.navigation.NavigationB">
+        <property name="properties">
+            <value>
+                id=1
+                name=pro test
+            </value>
+        </property>
+        <property name="array">
+            <array>
+                <value></value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value></value>
+            </list>
+        </property>
+        <property name="map">
+            <map value-type="com.demo.di.navigation.NavigationC" key-type="java.lang.String">
+                <entry value="nac" key="test data"/>
+            </map>
+        </property>
+        <property name="navigationC" value="naC"/>
+    </bean>
+    <bean id="naA" class="com.demo.di.navigation.NavigationA">
+        <property name="navigationB" value="naB"/>
+    </bean>
+
+
+</beans>
