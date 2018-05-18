@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.plugin.mapper.MybatisPluginMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.plugin.bean.MybatisPlugin" >
+    <id column="plugin_id" property="pluginId" jdbcType="INTEGER" />
+    <result column="plugin_name" property="pluginName" jdbcType="VARCHAR" />
+    <result column="plugin_address" property="pluginAddress" jdbcType="VARCHAR" />
+    <result column="plugin_title" property="pluginTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    plugin_id, plugin_name, plugin_address, plugin_title
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.demo.plugin.bean.MybatisPluginExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mybatis_plugin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mybatis_plugin
+    where plugin_id = #{pluginId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mybatis_plugin
+    where plugin_id = #{pluginId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.demo.plugin.bean.MybatisPluginExample" >
+    delete from mybatis_plugin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.demo.plugin.bean.MybatisPlugin" >
+    insert into mybatis_plugin (plugin_id, plugin_name, plugin_address, 
+      plugin_title)
+    values (#{pluginId,jdbcType=INTEGER}, #{pluginName,jdbcType=VARCHAR}, #{pluginAddress,jdbcType=VARCHAR}, 
+      #{pluginTitle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.plugin.bean.MybatisPlugin" >
+    insert into mybatis_plugin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pluginId != null" >
+        plugin_id,
+      </if>
+      <if test="pluginName != null" >
+        plugin_name,
+      </if>
+      <if test="pluginAddress != null" >
+        plugin_address,
+      </if>
+      <if test="pluginTitle != null" >
+        plugin_title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pluginId != null" >
+        #{pluginId,jdbcType=INTEGER},
+      </if>
+      <if test="pluginName != null" >
+        #{pluginName,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginAddress != null" >
+        #{pluginAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginTitle != null" >
+        #{pluginTitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.demo.plugin.bean.MybatisPluginExample" resultType="java.lang.Integer" >
+    select count(*) from mybatis_plugin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mybatis_plugin
+    <set >
+      <if test="record.pluginId != null" >
+        plugin_id = #{record.pluginId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pluginName != null" >
+        plugin_name = #{record.pluginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pluginAddress != null" >
+        plugin_address = #{record.pluginAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pluginTitle != null" >
+        plugin_title = #{record.pluginTitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mybatis_plugin
+    set plugin_id = #{record.pluginId,jdbcType=INTEGER},
+      plugin_name = #{record.pluginName,jdbcType=VARCHAR},
+      plugin_address = #{record.pluginAddress,jdbcType=VARCHAR},
+      plugin_title = #{record.pluginTitle,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.plugin.bean.MybatisPlugin" >
+    update mybatis_plugin
+    <set >
+      <if test="pluginName != null" >
+        plugin_name = #{pluginName,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginAddress != null" >
+        plugin_address = #{pluginAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pluginTitle != null" >
+        plugin_title = #{pluginTitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plugin_id = #{pluginId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.plugin.bean.MybatisPlugin" >
+    update mybatis_plugin
+    set plugin_name = #{pluginName,jdbcType=VARCHAR},
+      plugin_address = #{pluginAddress,jdbcType=VARCHAR},
+      plugin_title = #{pluginTitle,jdbcType=VARCHAR}
+    where plugin_id = #{pluginId,jdbcType=INTEGER}
+  </update>
+</mapper>

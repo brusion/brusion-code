@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.PersonMapper">
+
+    <resultMap id="personResult" type="com.demo.PersonObject">
+        <id property="personId" column="person_id"/>
+        <result property="personName" column="person_name"/>
+        <result property="personAddress" column="person_address"/>
+    </resultMap>
+
+    <insert id="insertPerson" parameterType="com.demo.PersonObject">
+        insert into mybatis_person (person_name,person_address) values (#{personName},#{personAddress})
+    </insert>
+
+</mapper>
