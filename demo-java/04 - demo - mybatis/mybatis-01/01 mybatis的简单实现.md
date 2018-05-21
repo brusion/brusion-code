@@ -19,7 +19,58 @@ person_address varchar(200)
 * 2、数据库id为：person_id，id不能为空，并未主键id，自动增长（数据插入时不需要设置id值）
 * 3、数据库其他字段：person_name，person_address 都是String类型，长度为200
 
-### 二、java实体创建
+### 二、maven配置与java实体创建
+#### 1、maven库配置
+```
+ <dependencies>
+
+        <!--mybatis库-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+
+        <!--数据库连接库-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.45</version>
+        </dependency>
+
+        <!--基础包-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!--log库-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!--测试库-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.0</version>
+        </dependency>
+    </dependencies>
+```
+
+#### 2、java实体创建
 * 根据数据库字段创建java实体
 * 省略get，set方法
 ```
@@ -152,3 +203,6 @@ public class PersonDao {
 Preparing: insert into mybatis_person (person_name,person_address) values (?,?) 
 Parameters: insertPerson method name(String), insertPerson method address(String)
 ```
+
+### 七、代码地址
+https://github.com/brusion/brusion-code/tree/master/demo-java/04%20-%20demo%20-%20mybatis/mybatis-01

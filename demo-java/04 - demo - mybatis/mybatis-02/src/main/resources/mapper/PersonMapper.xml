@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mybatis.PersonMapper">
+
+    <resultMap id="personResult" type="PersonObject">
+        <id property="personId" column="person_id"/>
+        <result property="personName" column="person_name"/>
+        <result property="personAddress" column="person_address"/>
+    </resultMap>
+
+    <insert id="insertPerson" parameterType="PersonObject">
+        insert into mybatis_person (person_name,person_address) values (#{personName},#{personAddress})
+    </insert>
+
+    <update id="updatePerson" parameterType="PersonObject">
+        update mybatis_person set person_name = #{personName} , person_address= #{personAddress}
+        where person_id =#{personId}
+    </update>
+
+    <delete id="deletePerson" parameterType="int">
+        delete from mybatis_person where person_id = #{personId}
+    </delete>
+
+    <select id="selectPerson" parameterType="int" resultMap="personResult">
+        select * from mybatis_person where person_id = #{personId}
+    </select>
+
+    <select id="selectList" resultMap="personResult" >
+           select * from mybatis_person
+    </select>
+
+</mapper>
