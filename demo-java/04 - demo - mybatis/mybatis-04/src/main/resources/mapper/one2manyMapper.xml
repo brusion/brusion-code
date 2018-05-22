@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="one2manyMapper">
+    <resultMap id="one2manyPerson" type="com.demo.mybatis.one2many.One2manyPerson">
+        <id property="personId" column="one2many_person_id"/>
+        <result property="personName" column="one2many_name"/>
+        <result property="personEmail" column="one2many_email"/>
+        <result property="personPhone" column="one2many_phone"/>
+    </resultMap>
+
+
+    <resultMap id="one2manyClasses" type="com.demo.mybatis.one2many.One2manyClasses">
+        <id property="classId" column="one2many_classes_id"/>
+        <result property="className" column="one2many_name"/>
+        <result property="classDescription" column="one2many_description"/>
+        <result property="startDate" column="one2many_start_date"/>
+        <result property="endDate" column="one2many_end_date"/>
+        <collection property="personList" resultMap="one2manyPerson"/>
+    </resultMap>
+
+    <select id="selectClasses" parameterType="int" resultMap="one2manyClasses">
+        select * from mybatis_one2many_classes classes
+        left outer join mybatis_one2many_person
+         on classes.one2many_person_ids = mybatis_one2many_person.one2many_person_id
+        where classes.one2many_classes_id =#{classId}
+    </select>
+
+</mapper>

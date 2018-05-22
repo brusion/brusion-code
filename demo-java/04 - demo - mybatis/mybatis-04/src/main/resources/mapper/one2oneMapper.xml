@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="one2oneMapper">
+    <resultMap id="one2oneAddress" type="com.demo.mybatis.one2one.One2OneAddress">
+        <id property="addrId" column="one2one_addr_id"/>
+        <result property="addrStreet" column="one2one_street"/>
+        <result property="addrCity" column="one2one_city"/>
+        <result property="addrState" column="one2one_state"/>
+        <result property="addrZip" column="one2one_zip"/>
+        <result property="addrCountry" column="one2one_country"/>
+    </resultMap>
+
+    <resultMap id="one2oneStudent" type="com.demo.mybatis.one2one.One2OneStudent">
+        <id property="stuId" column="one2one_stud_id"/>
+        <result property="stuName" column="one2one_name"/>
+        <result property="stuEmail" column="one2one_email"/>
+        <result property="stuDob" column="one2one_dob"/>
+        <result property="stuPhone" column="one2one_phone"/>
+        <association property="stuAddress" resultMap="one2oneAddress"/>
+    </resultMap>
+
+    <select id="selectStudent" parameterType="int" resultMap="one2oneStudent">
+        select * from mybatis_one2one_students left outer join mybatis_one2one_addresses
+        on mybatis_one2one_students.one2one_addr_id = mybatis_one2one_addresses.one2one_addr_id
+        where one2one_stud_id = #{stuId}
+    </select>
+
+    <select id="selectStudentShot" parameterType="int" resultMap="one2oneStudent">
+        select * from mybatis_one2one_students student left outer join mybatis_one2one_addresses address
+        on student.one2one_addr_id = address.one2one_addr_id
+        where one2one_stud_id = #{stuId}
+    </select>
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="many2manyMapper">
+
+    <resultMap id="many2manyStudent" type="com.demo.mybatis.many2many.Many2manyStudent">
+        <id property="stuId" column="many2many_student_id"/>
+        <result property="stuName" column="many2many_name"/>
+        <result property="stuGender" column="many2many_gender"/>
+        <result property="stuMajor" column="many2many_major"/>
+        <result property="stuGrade" column="many2many_grade"/>
+    </resultMap>
+    <resultMap id="many2manyCart" type="com.demo.mybatis.many2many.Many2manyCart">
+        <id property="cartId" column="many2many_cart_id"/>
+        <result property="carCode" column="many2many_cart_code"/>
+        <result property="cartName" column="many2many_cart_name"/>
+    </resultMap>
+
+    <resultMap id="otherStudent" type="com.demo.mybatis.many2many.Many2manyStudent" extends="many2manyStudent">
+        <collection property="cartList" resultMap="many2manyCart"/>
+    </resultMap>
+
+    <resultMap id="otherCart" type="com.demo.mybatis.many2many.Many2manyCart" extends="many2manyCart">
+        <collection property="studentList" resultMap="many2manyStudent"/>
+    </resultMap>
+
+    <select id="selectStudent" parameterType="int" resultMap="otherStudent">
+        select * from
+        mybatis_many2many_cart cart,mybatis_many2many_student student ,mybatis_many2many_other other
+
+        where
+          student.many2many_student_id = #{stuId}
+        and
+          student.many2many_student_id = other.many2many_student_id
+        and
+          other.many2many_cart_id = cart.many2many_cart_id
+    </select>
+
+
+    <select id="selectCart" parameterType="int" resultMap="otherCart">
+        select * from
+        mybatis_many2many_cart cart,mybatis_many2many_student student ,mybatis_many2many_other other
+
+        where
+          cart.many2many_cart_id = #{cartId}
+        and
+           cart.many2many_cart_id = other.many2many_cart_id
+        and
+          other.many2many_student_id = student.many2many_student_id
+    </select>
+
+</mapper>
