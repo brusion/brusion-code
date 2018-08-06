@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-demo-study</artifactId>
+        <groupId>spring-demo-study</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>01-di</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>01-config-scan</module>
+        <module>01-config-auto</module>
+        <module>01-config-java</module>
+        <module>02-xml-bean</module>
+        <module>02-xml-constructor</module>
+        <module>02-xml-setter</module>
+        <module>03-double-config</module>
+        <module>03-double-xml</module>
+    </modules>
+
+
+</project>
