@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mediaPlayer" class="com.demo.MediaPlayer">
+        <constructor-arg value="test-title" name="title"/>
+        <constructor-arg name="desc" value="test-desc"/>
+        <constructor-arg name="list">
+            <list>
+                <value>test-list-1</value>
+                <value>test-list-2</value>
+                <value>test-list-3</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>

@@ -24,6 +24,12 @@ public class CDPlayerTest {
     }
 
     @Test
+    public void getCDPlayer(){
+        CDPlayer cdPlayer = cdConfig.cdPlayer();
+        cdPlayer.play();
+    }
+
+    @Test
     public void equalsBean() {
         CompactDisc compactDisc = cdConfig.sgtPepper();
         CDPlayer cdPlayer = cdConfig.anotherPlayer();

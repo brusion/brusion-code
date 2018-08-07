@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="sgtPepper" class="com.demo.SgtPepper"/>
+
+    <bean id="cdPlayer" class="com.demo.CDPlayer">
+        <property name="compactDisc" ref="sgtPepper"/>
+    </bean>
+
+    <bean id="cdPlayer_p" class="com.demo.CDPlayer" p:compactDisc-ref="sgtPepper"/>
+
+
+    <!--setter配置基本数据类型参数-->
+    <bean id="mediaPlay" class="com.demo.MediaPlayer">
+        <property name="desc" value="test-desc"/>
+        <property name="title" value="test-title"/>
+    </bean>
+
+    <bean id="title" class="java.lang.String" c:_0="bean-title"/>
+    <bean id="desc" class="java.lang.String" c:_0="bean-desc"/>
+    <bean id="mediaPlay_ref" class="com.demo.MediaPlayer">
+        <property name="title" ref="title"/>
+        <property name="desc" ref="desc"/>
+    </bean>
+
+
+
+    <!--集合配置-->
+    <bean id="listCDPlayer" class="com.demo.ListCDPlayer">
+        <property name="list">
+            <list>
+                <value>list-data-2</value>
+                <value>list-data-3</value>
+                <value>list-data-4</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="list-bean-1" class="java.lang.String" c:_0="list-bean-1"/>
+    <bean id="list-bean-2" class="java.lang.String" c:_0="list-bean-2"/>
+    <bean id="list-bean-3" class="java.lang.String" c:_0="list-bean-3"/>
+
+    <bean id="listCDPlayer_ref" class="com.demo.ListCDPlayer">
+        <property name="list">
+            <list>
+                <ref bean="list-bean-1"/>
+                <ref bean="list-bean-2"/>
+                <ref bean="list-bean-3"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <util:list id="list">
+        <value>utils-data-1</value>
+        <value>utils-data-2</value>
+        <value>utils-data-3</value>
+        <value>utils-data-4</value>
+    </util:list>
+    <bean id="listCDPlayer_util" class="com.demo.ListCDPlayer" p:list-ref="list"/>
+
+
+</beans>

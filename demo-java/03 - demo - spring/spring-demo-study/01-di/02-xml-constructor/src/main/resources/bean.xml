@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--一个参数构造方法配置-->
+    <bean id="compactDisc" class="com.demo.SgtPepper"/>
+
+    <bean id="cdPlayer" class="com.demo.CDPlayer">
+        <constructor-arg ref="compactDisc"/>
+    </bean>
+
+    <bean id="cdPlayer_c" class="com.demo.CDPlayer" c:compactDisc-ref="compactDisc"/>
+
+    <bean id="cdPlayer_0" class="com.demo.CDPlayer" c:_0-ref="compactDisc"/>
+
+
+
+    <!--Spring类型数据注入-->
+    <bean id="mediaPlayer" class="com.demo.MediaPlayer">
+        <constructor-arg value="test-title"/>
+        <constructor-arg value="test-desc"/>
+    </bean>
+
+
+    <bean id="mediaPlayer_c" class="com.demo.MediaPlayer" c:title="test_title-c" c:desc="test_desc-c"/>
+    <bean id="mediaPlayer_0" class="com.demo.MediaPlayer" c:_0="test_title-0" c:_1="test_desc-1"/>
+
+
+    <!--list参数构造方法配置-->
+    <bean id="listCDPlayer" class="com.demo.ListCDPlayer">
+       <constructor-arg>
+           <list>
+               <value>test-cdPlay-0</value>
+               <value>test-cdPlay-1</value>
+               <value>test-cdPlay-2</value>
+           </list>
+       </constructor-arg>
+    </bean>
+
+
+
+    <bean id="test-bean-1" class="java.lang.String" c:_0="test-bean-1"/>
+    <bean id="test-bean-2" class="java.lang.String" c:_0="test-bean-2"/>
+    <bean id="test-bean-3" class="java.lang.String" c:_0="test-bean-3"/>
+    <bean id="test-bean-4" class="java.lang.String" c:_0="test-bean-4"/>
+    <bean id="listCDPlayer_ref" class="com.demo.ListCDPlayer">
+        <constructor-arg>
+            <list>
+                <ref bean="test-bean-1"/>
+                <ref bean="test-bean-2"/>
+                <ref bean="test-bean-3"/>
+                <ref bean="test-bean-4"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>

@@ -6,30 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static junit.framework.TestCase.assertNotNull;
-
 /**
  * @author brusion
- * @date 2018/8/6
+ * @date 2018/8/7
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = CDConfig.class)
+@ContextConfiguration({"file:src/main/resources/bean.xml"})
 public class CDPlayerTest {
 
     @Autowired
-    private CompactDisc compactDisc;
-
-    @Autowired
     private CDPlayer cdPlayer;
+    @Autowired
+    private CDPlayer cdPlayer_p;
 
     @Test
-    public void showBean(){
-        compactDisc.play();
-    }
-
-
-    @Test
-    public void getBean() {
+    public void getCDPlay() {
         cdPlayer.play();
+        cdPlayer_p.play();
+
     }
+
 }
