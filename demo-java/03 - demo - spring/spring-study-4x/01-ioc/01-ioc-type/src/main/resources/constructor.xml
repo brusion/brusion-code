@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--按照参数名称方式-->
+    <bean id="constructorObject_name" class="com.demo.constructor.ConstructorObject">
+        <constructor-arg name="desc" value="test-desc-data"/>
+        <constructor-arg name="title" value="test-title-data"/>
+        <constructor-arg name="size" value="4188"/>
+    </bean>
+
+    <!--按照参数类型-->
+    <bean id="constructorObject_type" class="com.demo.constructor.ConstructorObject">
+        <constructor-arg type="java.lang.String" value="test-desc-type"/>
+        <constructor-arg type="java.lang.String" value="test-title-type"/>
+        <constructor-arg type="int" value="4188"/>
+    </bean>
+
+    <!--按照参数索引-->
+    <bean id="constructorObject_index" class="com.demo.constructor.ConstructorObject">
+        <constructor-arg index="0" value="test-desc-index"/>
+        <constructor-arg index="1" value="test-title-index"/>
+        <constructor-arg index="2" value="4188"/>
+    </bean>
+
+    <!--按照反射方式-->
+    <bean id="constructorObject_reflection" class="com.demo.constructor.ConstructorObject">
+        <constructor-arg value="test-desc-reflection"/>
+        <constructor-arg value="4188"/>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="foreA" class="com.demo.fore.ForeObjectA">
+        <constructor-arg name="desc" value="test-desc"/>
+        <constructor-arg name="foreObjectB" ref="foreB"/>
+    </bean>
+
+    <bean id="foreB" class="com.demo.fore.ForeObjectB">
+        <constructor-arg name="title" value="test-title"/>
+        <constructor-arg name="foreObjectA" ref="foreA"/>
+    </bean>
+
+</beans>
