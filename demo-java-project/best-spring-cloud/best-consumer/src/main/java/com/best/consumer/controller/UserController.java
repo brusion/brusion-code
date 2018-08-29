@@ -15,8 +15,8 @@ public class UserController {
     @Autowired
     private UserRemote userRemote;
 
-    @RequestMapping("/index")
-    public String index() {
+    @RequestMapping("/consumer")
+    public String indexTest() {
         return userRemote.index();
     }
 }
